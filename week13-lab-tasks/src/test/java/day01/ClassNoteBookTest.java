@@ -3,8 +3,10 @@ package day01;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,10 +20,10 @@ class ClassNoteBookTest {
 
     @BeforeEach
     void init() {
-        cnb.addStudent(s1);
+        cnb.addStudent(s4);
         cnb.addStudent(s2);
         cnb.addStudent(s3);
-        cnb.addStudent(s4);
+        cnb.addStudent(s1);
     }
 
     @Test
@@ -44,5 +46,10 @@ class ClassNoteBookTest {
     @Test
     void addStudentExceptionTest() {
         assertThrows(IllegalArgumentException.class, () -> cnb.addStudent(new Student(1, "teszt")));
+    }
+
+    @Test
+    void addStudentOrderSet() {
+        assertEquals(List.of(s1, s2, s3, s4), new ArrayList<>(cnb.getStudentsAndMarks().keySet()));
     }
 }
